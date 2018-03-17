@@ -9,6 +9,10 @@ public enum PathName {
 
 	private String content;
 	
+	/**
+	 * Constructs a PathName enum element
+	 * @param content The representing digit of the element
+	 */
 	PathName(String content) {
 		this.content = content;
 	}

@@ -11,24 +11,6 @@ import java.util.HashMap;
 public class HuffmanEncoder {
 
 	/**
-	 * Main method for test purposes
-	 * @param args command line arguments
-	 */
-	public static void main(String[] args) {
-
-		// test input
-		HashMap<Character, String> result = generateHofmannEncoding(
-				CharacterCounter.countCharacters("Guten Morgen, liebe Sorgen, seid ihr auch schon wieder da? Hast du auch so gut geschlafen? Na, dann ist ja alles klar.")
-		);
-
-		// test output
-		for (Character key : result.keySet()) {
-			System.out.println(key + ": " + result.get(key));
-		}
-
-	}
-
-	/**
 	 * Generates a HashMap containing characters and their binary Huffman encoding
 	 * 
 	 * @param tupelList
