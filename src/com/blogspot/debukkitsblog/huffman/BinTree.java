@@ -10,24 +10,12 @@ public class BinTree {
 	private BinTree leftChild;
 	private BinTree rightChild;
 	
-	private BinTree predecessor = null;
-	private PathName predecessorPathName;
-	
 	/**
 	 * Constructs a new binary tree node
 	 * @param content The content of the node
 	 */
 	public BinTree(Object content) {
 		this.content = content;
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if(obj instanceof BinTree) {
-			BinTree other = (BinTree) obj;
-			return other.getContent().equals(this.getContent());
-		}
-		return false;
 	}
 	
 	/**
@@ -48,6 +36,26 @@ public class BinTree {
 		}
 		
 		return null;
+	}
+	
+	/**
+	 * Finds the BinTree node containg a given content, returning the path on the way to that node
+	 * @param subject The given content
+	 * @return The path to that node as a String, by default consisting of 0 and 1 digits 
+	 */
+	public String findPath(Object subject) {
+		if(this.getContent().equals(subject)) {
+			return "";
+		}
+		
+		if(leftChild != null && leftChild.contains(subject)) {
+			return PathName.LEFT.getRepresentingDigit() + leftChild.findPath(subject);
+		}
+		if(rightChild != null && rightChild.contains(subject)) {
+			return PathName.RIGHT.getRepresentingDigit() + rightChild.findPath(subject);
+		}
+		
+		return "";
 	}
 	
 	/**
@@ -72,19 +80,6 @@ public class BinTree {
 		
 		return getLeftChild().contains(subject) || getRightChild().contains(subject);
 	}
-	
-	public BinTree getPredecessor() {
-		return predecessor;
-	}
-	
-	public PathName getPredecessorPathName() {
-		return predecessorPathName;
-	}
-
-	public void setPredecessor(BinTree predecessor, PathName pathName) {
-		this.predecessor = predecessor;
-		this.predecessorPathName = pathName;
-	}
 
 	public Object getContent() {
 		return content;
@@ -100,7 +95,6 @@ public class BinTree {
 
 	public void setLeftChild(BinTree leftChild) {
 		this.leftChild = leftChild;
-		this.leftChild.setPredecessor(this, PathName.LEFT);
 	}
 
 	public BinTree getRightChild() {
@@ -109,7 +103,20 @@ public class BinTree {
 
 	public void setRightChild(BinTree rightChild) {
 		this.rightChild = rightChild;
-		this.rightChild.setPredecessor(this, PathName.RIGHT);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof BinTree) {
+			BinTree other = (BinTree) obj;
+			return other.getContent().equals(this.getContent());
+		}
+		return false;
+	}
+	
+	@Override
+	public String toString() {
+		return "[" + content + "; hasLeft: " + (getLeftChild() != null) + "; hasRight: " + (getRightChild() != null) + "]";
 	}
 	
 }

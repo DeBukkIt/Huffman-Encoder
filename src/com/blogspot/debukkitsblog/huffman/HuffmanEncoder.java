@@ -18,7 +18,7 @@ public class HuffmanEncoder {
 	 *            the encoding should be generated with
 	 * @return A HashMap containing the characters and their binary Huffman encoding
 	 */
-	public static HashMap<Character, String> generateHofmannEncoding(HuffmanTuple... tupelList) {
+	public static HashMap<Character, String> generateHuffmanEncoding(HuffmanTuple... tupelList) {
 
 		HashMap<Character, String> result = new HashMap<>();
 		List<BinTree> liste = new ArrayList<BinTree>();
@@ -81,18 +81,8 @@ public class HuffmanEncoder {
 	 * @return The character's Huffman encoding as a String contains binary digits
 	 */
 	private static String getEncoding(BinTree mainRoot, Character character) {
-		String verticalTraversalString = "";
-
-		// find wanted character in tree
-		BinTree currentParent = mainRoot.find(new HuffmanTuple(character, -1));
-		// walk the path from that node to the tree's main root
-		while (currentParent != null && currentParent.getPredecessor() != null) {
-			// remember the left-right-turns on the path
-			verticalTraversalString = currentParent.getPredecessorPathName().getRepresentingDigit() + verticalTraversalString;
-			currentParent = currentParent.getPredecessor();
-		}
-
-		return verticalTraversalString;
+		// find wanted character in tree and return its path
+		return mainRoot.findPath(new HuffmanTuple(character, -1));
 	}
 
 }
