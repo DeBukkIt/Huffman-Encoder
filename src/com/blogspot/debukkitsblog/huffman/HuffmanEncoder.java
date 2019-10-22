@@ -6,6 +6,8 @@ import java.util.HashMap;
 
 // just a change to test git, GitHub
 
+// another comment
+
 /**
  * Huffman encodes characters based on their frequency of occurance
  * @author DeBukkIt
