@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 
+// just a change to test git, GitHub
+
 /**
  * Huffman encodes characters based on their frequency of occurance
  * @author DeBukkIt
